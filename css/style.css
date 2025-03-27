@@ -386,9 +386,64 @@
 
 
 /*** Banner Section Start ***/
-.banner .banner-btn:hover {
-    background: var(--bs-primary);
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to right, #c48f3e 50%, #ffb347 50%);
+    color: white;
+    padding: 50px;
+    height: 400px;
 }
+
+.banner-text {
+    width: 40%;
+    color: #fff;
+}
+
+.banner-text h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.banner-text h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.banner-text p {
+    font-size: 14px;
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.buy-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: gray;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    margin-top: 20px;
+    transition: 0.3s ease-in-out;
+}
+
+.buy-btn:hover {
+    background: darkgray;
+}
+
+.banner-image {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.banner-image img {
+    width: 90%;
+    max-width: 400px;
+}
+
 /*** Banner Section End ***/
 
 
