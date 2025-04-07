@@ -147,5 +147,57 @@
         button.parent().parent().find('input').val(newVal);
     });
 
+searchInput.addEventListener('input', e => renderRestaurants(e.target.value));
+
+// Category filter buttons
+document.querySelectorAll('.btn-outline-primary').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const category = btn.textContent.trim();
+        document.querySelectorAll('.btn-outline-primary').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        if (category === "All") {
+            renderRestaurants();
+        } else {
+            renderRestaurantsByCategory(category);
+        }
+    });
+});
+
+// Category-to-restaurant map
+const categoryMap = {
+    "Indian": ["Curry Corner", "Urban Tandoor", "Delhi Biryani", "Paneer Point", "Tandoori Town", "Masala Magic", "The Curry Leaf", "Biryani Bhavan"],
+    "Chinese": ["Dragon's Delight", "Wok & Roll", "Noodle Nirvana", "Dumpling Den", "Chopstick Charm", "Zing Zing", "Momo Mafia"],
+    "Italian": ["Pizza Paradiso", "Pasta Palace", "Ravioli Republic", "La Pizzeria", "Gusto Italiano", "Pasta Party", "Mama Mia"],
+    "Mexican": ["Taco Fiesta", "Burrito Bros", "Salsa Spot", "Wrap World"],
+    "Desserts": ["Crispy Cravings", "Gravy Garden", "Spicy Treat", "Cheesy Crust"]
+};
+
+// Render by category
+function renderRestaurantsByCategory(category) {
+    const names = categoryMap[category] || [];
+    restaurantGrid.innerHTML = '';
+    restaurantNames.forEach((name, i) => {
+        if (names.includes(name)) {
+            restaurantGrid.innerHTML += `
+                <div class="col-lg-4 col-md-6">
+                    <div class="card border-0 shadow-sm">
+                        <img src="img/restaurant-${(i % 10) + 1}.jpg" class="card-img-top" alt="${name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${name}</h5>
+                            <p class="card-text">Enjoy the best of cuisine with our top-rated chefs.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-success">${(Math.random() * (5 - 3.6) + 3.6).toFixed(1)} ★</span>
+                                <a href="#" class="btn btn-sm btn-outline-primary rounded-pill">View Menu</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    });
+}
+
+
 })(jQuery);
 
